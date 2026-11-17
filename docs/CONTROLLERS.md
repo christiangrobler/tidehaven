@@ -25,6 +25,16 @@ Tip: *Add to Home Screen* (iPhone: Share -> Add to Home Screen; Android Chrome: 
 
 If you cannot read the address, find the TV's IP in Settings -> Network and use `http://<TV-IP>:8080/pad.html`.
 
+## Choosing the main screen
+
+Every device is either a **main screen** (shows the board) or a **controller** (your private cards). The Android TV app and a Raspberry Pi start as main screens. You can change any device in the settings, and it remembers the choice:
+
+- **Controller -> main screen:** open **Menu** and choose **Make this device the main screen**. Tap twice to confirm. The same button is on the join screen.
+- **Main screen -> controller:** on the lobby screen choose **Settings**, then **Make this device a controller instead**. (With a TV remote, move to the button and press OK.)
+- **Pick again from the home page:** open `http://<address>:8080/?choose`.
+
+Use only one main screen at a time. When a new main screen starts, controllers that reconnect follow it. Switch the old one to a controller in its Settings.
+
 ## Sound
 
 - **The TV** plays only the ocean and the birds.

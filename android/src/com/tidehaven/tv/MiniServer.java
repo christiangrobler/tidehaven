@@ -127,9 +127,9 @@ public class MiniServer {
             path = URLDecoder.decode(path, "UTF-8");
             if (path.equals("/")) path = "/index.html";
 
-            if (path.equals("/tv-code")) {            // the TV page tells us its current join code (only accepted from this device)
+            if (path.equals("/tv-code")) {            // the main screen tells us its current join code (accepted from this device and from the home network)
                 InetAddress ra = s.getInetAddress();
-                boolean local = ra.isLoopbackAddress() || NetworkInterface.getByInetAddress(ra) != null;
+                boolean local = ra.isLoopbackAddress() || ra.isSiteLocalAddress() || NetworkInterface.getByInetAddress(ra) != null;   // this device, or any device on the home network that is made the main screen
                 java.util.regex.Matcher m = java.util.regex.Pattern.compile("(?:^|&)c=([A-Za-z0-9]{3,8})").matcher(query);
                 if (local && m.find()) { tvCode = m.group(1).toUpperCase(Locale.ROOT); respond(s, 200, "text/plain", "ok".getBytes(), head, null, false, null); }
                 else respond(s, 403, "text/plain", "no".getBytes(), head, null, false, null);

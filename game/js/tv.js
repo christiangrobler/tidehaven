@@ -202,8 +202,23 @@
       <div class="tl-qr">${qrSVG(TV.url(),300)}</div>
       <p class="tl-code">${esc(TV.plainUrl())}<br>code <b>${TV.code}</b></p>${stat}
       <ul class="roster">${rosterHTML()}</ul>
+      <p class="tl-set"><button class="btn ghost" data-tvset="open">Settings</button></p>
       <p class="tl-note">${inGame?'Each player rejoins by scanning the code and tapping their name.':'The first phone to join sets up the game. Cards stay private on each phone.'}<br>Tip: open the link above on your phone and choose Add to Home Screen. Next time, just open the app and it finds this TV by itself.</p></div></div>`;
   }
+  /* settings page on the main screen: switch this device to a controller, or the ocean sound on and off */
+  function settingsHTML(){
+    return `<div class="fp tvset"><div class="fp-join"><h2>Settings</h2><p class="lead">This device is the <b>main screen</b>: it shows the board, and the phones and computers are the controllers.</p>
+      <div class="menu"><button class="btn" data-tvset="amb">Ocean and birds: ${SND.ambOn?'on':'off'}</button>
+      <button class="btn${TV.askPad?' primary':''}" data-tvset="pad">${TV.askPad?'Press again: this device becomes a controller':'Make this device a controller instead'}</button>
+      <button class="btn ghost" data-tvset="close">Back</button></div>
+      <p class="tl-note">To make another phone or computer the main screen, open Menu on it and choose “Make this device the main screen”.</p></div></div>`;
+  }
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-tvset]');if(!b)return;e.preventDefault();const a=b.dataset.tvset;
+    if(a==='open'){TV.setOpen=true;TV.askPad=false;}
+    else if(a==='close'){TV.setOpen=false;TV.askPad=false;}
+    else if(a==='amb'){SND.ambOn=!SND.ambOn;sndSave();audio();ambienceUpdate();}
+    else if(a==='pad'){if(!TV.askPad){TV.askPad=true;setTimeout(()=>{if(TV.askPad){TV.askPad=false;refresh();}},6000);}else{Role.go('pad');return;}}
+    refresh();setTimeout(()=>{const f=document.querySelector(TV.setOpen?'.tvset .btn':'.tl-set .btn');if(f)f.focus();},60);});
   function linkWidgetHTML(){
     if(!G||G.preview)return '';
     const al=allowed();const off=al.filter(s=>!online(s));
@@ -219,13 +234,14 @@
   const _wanted=wantedSheet;
   wantedSheet=function(){
     if(!G)return null;
+    if(TV.setOpen&&G.preview)return {type:'tvset'};
     if(!G.preview)document.documentElement.classList.remove('tvlobby');
     if(G.preview)return {type:'tvlobby'};
     if(G.winner!=null&&!UI.winSeen)return {type:'win'};
     return null;
   };
   const _sheet=sheetHTML;
-  sheetHTML=function(s){const lb=!!(s&&s.type==='tvlobby');document.documentElement.classList.toggle('tvlobby',lb);if(lb)return lobbyHTML();return _sheet(s);};
+  sheetHTML=function(s){const lb=!!(s&&(s.type==='tvlobby'||s.type==='tvset'));document.documentElement.classList.toggle('tvlobby',lb);if(s&&s.type==='tvset')return settingsHTML();if(lb)return lobbyHTML();return _sheet(s);};
   statusHTML=function(){
     if(G.preview)return 'Waiting for the game to start.';
     if(G.winner!=null)return `<b>${esc(nm(G.winner))}</b> wins.`;

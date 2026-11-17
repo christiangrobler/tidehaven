@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Tidehaven</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#17110c">
+<title>Tidehaven</title>
+<script>(function(){try{var r=localStorage.getItem("tidehaven.role"),c=/[?&]choose/.test(location.search);if(!c&&(r==="tv"||r==="pad"))location.replace((r==="tv"?"tv.html":"pad.html")+location.search.replace(/[?&]choose/,""));}catch(e){}})();</script><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#17110c">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><link rel="icon" href="icons/icon-192.png">
 <style>
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#17110c;color:#f1e5c9;font-family:"Alegreya Sans","Gill Sans","Segoe UI",system-ui,sans-serif}
@@ -14,9 +15,10 @@ a small{display:block;margin-top:6px;font-weight:500;font-size:.62em;color:#b09c
 </style></head><body><main>
 <h1>Tidehaven</h1><p>Where are you opening this?</p>
 <div class="row">
-<a href="tv.html" autofocus>This is the TV<small>Big screen. Phones scan a QR code to join.</small></a>
-<a href="pad.html">This is a phone<small>Your private cards and mini map.</small></a>
+<a href="tv.html" autofocus data-role="tv">Main screen<small>The TV, a Raspberry Pi or a computer on a big screen. Phones scan a QR code to join.</small></a>
+<a href="pad.html" data-role="pad">Controller<small>A phone, tablet or computer: your private cards and mini map.</small></a>
 <a href="game.html">One device<small>Hot-seat or play the computer.</small></a>
-</div></main>
+</div><p style="font-size:14px">This device remembers your choice. Change it later in the menu (controller) or Settings (main screen), or open this page with <b>?choose</b>.</p></main>
+<script>document.addEventListener("click",function(e){var a=e.target.closest("[data-role]");if(a){try{localStorage.setItem("tidehaven.role",a.dataset.role);}catch(x){}}});</script>
 <script>if("serviceWorker" in navigator&&location.protocol!=="file:")navigator.serviceWorker.register("sw.js").catch(function(){});</script>
 </body></html>

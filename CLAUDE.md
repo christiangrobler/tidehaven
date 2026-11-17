@@ -34,7 +34,12 @@ Verify with a screenshot: `adb -s <TV-IP>:5555 exec-out screencap -p > shot.png`
 
 If `adb connect` is refused, the TV's network debugging is off or the IP is wrong. If install says the signature differs, run `adb uninstall com.tidehaven.tv` and install again.
 
-## 5. Rules
+## 5. Other platforms
+
+- **Raspberry Pi:** `raspberry-pi/install.sh` (see `docs/RASPBERRY-PI.md`). It serves `game/` with `raspberry-pi/server.py`, the same job as the Android app's `MiniServer.java`. Keep the two servers in step (`/code.json`, `/tv-code`).
+- **Main screen vs controller:** `game/js/role.js` stores the device's role; settings live in `pad.js` (controller menu) and `tv.js` (lobby Settings).
+
+## 6. Rules
 
 - To debug the TV's WebView you may temporarily add `WebView.setWebContentsDebuggingEnabled(true);` in `MainActivity.onCreate`. **Remove it and rebuild before the final install**; it exposes the WebView on the network.
 - After changing `game/tv.html`, bump the `?v=` cache-busting number on its script tags.

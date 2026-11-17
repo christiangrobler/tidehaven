@@ -126,11 +126,12 @@
       case 'padconn':{
         if(PAD.status==='idle')return `<div class="sheet padsheet"><h2>Join the TV</h2><p class="lead">${PAD.wasReset?'The TV was reset and every device was disconnected. ':''}Scan the QR code on the TV with your camera, or type the 5-letter code shown there.</p>
           <input id="padcode" class="padcode" maxlength="5" autocomplete="off" autocapitalize="characters" placeholder="CODE" value="">
-          <div class="btns"><button class="btn" data-act="padfind">Find the TV</button><button class="btn primary" data-act="padjoin">Connect</button></div></div>`;
+          <div class="btns"><button class="btn" data-act="padfind">Find the TV</button><button class="btn primary" data-act="padjoin">Connect</button></div>
+          <div class="btns"><button class="btn ghost" data-act="padmain">${PAD.mainAsk?'Tap again to confirm':'Make this device the main screen'}</button></div></div>`;
         if(PAD.status==='finding')return `<div class="sheet padsheet"><h2>Looking for the TV</h2><p class="lead">Checking this network for a Tidehaven TV…</p><div class="spin" aria-hidden="true"></div></div>`;
         const msg=PAD.status==='tv-offline'?'The TV isn’t answering. Make sure Tidehaven is open on the TV, then this will reconnect by itself.':PAD.status==='lost'?'Connection lost. Reconnecting…':'Connecting to the TV…';
         return `<div class="sheet padsheet"><h2>${PAD.status==='tv-offline'?'Looking for the TV':'Connecting'}</h2><p class="lead">${msg}</p><div class="spin" aria-hidden="true"></div>
-          <div class="btns"><button class="btn ghost" data-act="padforget">Use a different code</button></div></div>`;}
+          <div class="btns"><button class="btn ghost" data-act="padforget">Use a different code</button><button class="btn ghost" data-act="padmain">${PAD.mainAsk?'Tap again to confirm':'Make this device the main screen'}</button></div></div>`;}
       case 'padname':
         return `<div class="sheet padsheet"><h2>${PAD.renaming?'Change your name':'What’s your name?'}</h2><p class="lead">This is how the others will see you on the TV. You are ${esc(nm(PAD.seat))} right now.</p>
           <input id="padnamein" class="padcode" style="letter-spacing:.02em;font-size:26px;text-transform:none" maxlength="14" autocomplete="off" autocapitalize="words" placeholder="Your name" value="${esc(PAD.renaming?myName():'')}">
@@ -160,6 +161,7 @@
           <button class="btn" data-act="sound">Sound on this phone: ${SND.on?'on':'off'}</button>
           <button class="btn" data-act="padtest">Play a test sound</button>
           <button class="btn" data-act="padforget">Leave this TV</button>
+          <button class="btn${PAD.mainAsk?' primary':''}" data-act="padmain">${PAD.mainAsk?'Tap again: this device becomes the main screen':'Make this device the main screen'}</button>
           <button class="btn" data-act="padresetall">Reset all devices</button>
           <button class="btn ghost" data-act="close">Close</button></div></div>`;
     }
@@ -182,6 +184,7 @@
     padresetall(){if(!confirm('Disconnect every phone from this TV and start over with a new code? The game in progress will be lost.'))return;PAD.send({t:'resetall'});toast('Resetting all devices…',3000);},
     padnew(){if(G&&!G.preview&&G.winner==null&&!confirm('Start a new game? The game in progress will be lost for everyone.'))return;PAD.send({t:'newgame'});UI.sheet=null;toast('Starting a new game…',2400);refresh();},
     padfind(){PAD.status='finding';refresh();discover().then(c=>{if(c){try{localStorage.setItem(CODEK,c);}catch(e){}location.hash='#'+c;location.reload();}else{PAD.status='idle';toast('No TV found on this network. Type the code shown on the TV.',3600);refresh();}});},
+    padmain(){if(!PAD.mainAsk){PAD.mainAsk=true;refresh();setTimeout(()=>{PAD.mainAsk=false;if(UI.sheet&&UI.sheet.type==='menu')refresh();},6000);return;}PAD.mainAsk=false;Role.go('tv');},
     padforget(){try{localStorage.removeItem(CODEK);localStorage.setItem('tidehaven.pad.noauto','1');}catch(e){}location.hash='';location.reload();},
     padseat(d){PAD.send({t:'claim',seat:+d.s});},
     start(){const o=setupOpts();o.priv=false;PAD.send({t:'start',setup:UI.setup,opts:o,board:G.board});toast('Starting…',2000);},

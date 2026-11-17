@@ -20,7 +20,24 @@ A 3D island trading and building board game for the **big screen**. The TV (or a
 4. On each phone (same Wi-Fi as the TV) scan the QR code with the camera. That is your controller.
 5. The first player to join picks the board and options and presses **Start**.
 
-More detail: [Install](docs/INSTALL.md) - [Controllers](docs/CONTROLLERS.md) - [How to play](docs/HOW-TO-PLAY.md) - [Build from source](docs/BUILD.md) - [Troubleshooting](docs/TROUBLESHOOTING.md)
+More detail: [Install](docs/INSTALL.md) - [Raspberry Pi](docs/RASPBERRY-PI.md) - [Controllers](docs/CONTROLLERS.md) - [How to play](docs/HOW-TO-PLAY.md) - [Build from source](docs/BUILD.md) - [Troubleshooting](docs/TROUBLESHOOTING.md)
+
+## Raspberry Pi as the main screen
+
+No Android TV? A Raspberry Pi plugged into any TV or monitor can be the main screen:
+
+```bash
+git clone https://github.com/christiangrobler/tidehaven.git
+cd tidehaven/raspberry-pi
+./install.sh
+sudo reboot
+```
+
+The Pi then starts the game and opens the board full screen by itself. Use `./install.sh --server-only` for a headless Pi. Full guide: [docs/RASPBERRY-PI.md](docs/RASPBERRY-PI.md).
+
+## Choosing the main screen
+
+Any device can be the main screen, and you can change it in the settings: on a controller open **Menu -> Make this device the main screen**; on a main screen open **Settings -> Make this device a controller instead**. Each device remembers its choice. See [docs/CONTROLLERS.md](docs/CONTROLLERS.md#choosing-the-main-screen).
 
 ## Or let Claude do it: grab the repo, point it at your TV, build
 
@@ -71,6 +88,7 @@ Everything must be on the **same Wi-Fi or network as the TV**, and the devices n
 ```
 game/        the web game (tv.html, pad.html, game.html, js/, css/, vendor/, icons/)
 android/     Android TV app source (WebView + small built-in web server) and build.py
+raspberry-pi/  installer and game server for a Raspberry Pi (main screen or server)
 releases/    prebuilt tidehaven.apk (debug-signed)
 docs/        install, controller, how-to-play, build and troubleshooting guides
 ```
