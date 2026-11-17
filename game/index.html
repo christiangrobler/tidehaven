@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tidehaven</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#17110c">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><link rel="icon" href="icons/icon-192.png">
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#17110c;color:#f1e5c9;font-family:"Alegreya Sans","Gill Sans","Segoe UI",system-ui,sans-serif}
+main{min-height:100vh;display:grid;place-content:center;gap:22px;padding:28px;text-align:center}
+h1{font:400 clamp(44px,8vw,88px)/1 "IM Fell English SC",Georgia,serif;margin:0;color:#d8a744}
+p{margin:0;color:#b09c7c;font-size:clamp(16px,2.4vw,22px)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;width:min(920px,92vw)}
+a{display:block;padding:26px 18px;border-radius:18px;background:#241a13;border:2px solid #4a3a2c;color:#f1e5c9;text-decoration:none;font-weight:800;font-size:clamp(20px,2.6vw,28px)}
+a:hover,a:focus-visible{border-color:#d8a744;outline:none;background:#2f2218}
+a small{display:block;margin-top:6px;font-weight:500;font-size:.62em;color:#b09c7c}
+</style></head><body><main>
+<h1>Tidehaven</h1><p>Where are you opening this?</p>
+<div class="row">
+<a href="tv.html" autofocus>This is the TV<small>Big screen. Phones scan a QR code to join.</small></a>
+<a href="pad.html">This is a phone<small>Your private cards and mini map.</small></a>
+<a href="game.html">One device<small>Hot-seat or play the computer.</small></a>
+</div></main>
+<script>if("serviceWorker" in navigator&&location.protocol!=="file:")navigator.serviceWorker.register("sw.js").catch(function(){});</script>
+</body></html>

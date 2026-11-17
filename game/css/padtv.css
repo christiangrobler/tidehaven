@@ -1,0 +1,138 @@
+/* ====== shared sheet extras ====== */
+.dotc{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px rgba(255,255,255,.6);vertical-align:-2px;margin-right:6px}
+.btns.col{flex-direction:column}
+.roster{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.roster li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.45);color:#3a2a14;font-weight:700}
+.roster li i{width:16px;height:16px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px rgba(255,255,255,.7)}
+.roster li b{font-size:.8em;font-weight:700;color:#8a6f45}
+.roster li.on b{color:#2b6b32}
+.spin{width:38px;height:38px;margin:16px auto 4px;border-radius:50%;border:4px solid rgba(60,40,20,.2);border-top-color:#a87a24;animation:spn 1s linear infinite}
+@keyframes spn{to{transform:rotate(360deg)}}
+
+/* ====== phone ====== */
+html[data-role=pad] #mini,html[data-role=tv] #mini,html[data-view=flat] #mini{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;user-select:none;-webkit-user-select:none;background:radial-gradient(ellipse at 50% 45%,#5aa5dd 0%,#4b94cf 55%,#3b82c2 100%)}
+html[data-role=pad] #stage::before,html[data-role=tv] #stage::before,html[data-view=flat] #stage::before{display:none}
+html[data-role=pad] .mn,html[data-role=tv] .mn,html[data-view=flat] .mn{font-family:Teko,"Roboto Condensed","sans-serif-condensed","Arial Narrow","Alegreya Sans",system-ui,sans-serif;font-size:.56px;font-weight:700;text-anchor:middle;fill:#0d0d0d;pointer-events:none}
+html[data-role=pad] .mn.s,html[data-role=tv] .mn.s,html[data-view=flat] .mn.s{font-size:.38px}
+html[data-role=pad] .mn.hot,html[data-role=tv] .mn.hot,html[data-view=flat] .mn.hot{fill:#e0161d}
+html[data-role=pad] .mt,html[data-role=tv] .mt,html[data-view=flat] .mt{font-family:var(--body),system-ui,sans-serif;font-size:.2px;font-weight:800;text-anchor:middle;fill:#2b2017;pointer-events:none}
+html[data-role=pad] .mt.dim,html[data-role=tv] .mt.dim,html[data-view=flat] .mt.dim{fill:#3b3b3b;opacity:.65;font-size:.22px}
+html[data-role=pad] .mq,html[data-role=tv] .mq,html[data-view=flat] .mq{font-family:var(--display),serif;font-size:.8px;text-anchor:middle;fill:#e5e7eb;opacity:.8;pointer-events:none}
+html[data-role=pad] .mh,html[data-role=tv] .mh,html[data-view=flat] .mh{font-family:var(--body),system-ui,sans-serif;font-size:.19px;font-weight:800;text-anchor:middle;fill:#3b2a14;pointer-events:none}
+html[data-role=pad] .mk1,html[data-role=tv] .mk1,html[data-view=flat] .mk1{font-family:var(--body),system-ui,sans-serif;font-size:.2px;font-weight:800;text-anchor:middle;fill:#111;pointer-events:none}
+html[data-role=pad] .pulse,html[data-role=tv] .pulse,html[data-view=flat] .pulse{transform-box:fill-box;transform-origin:center;animation:mkp 1.1s ease-in-out infinite}
+@keyframes mkp{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+html[data-role=pad] .mk,html[data-role=tv] .mk,html[data-view=flat] .mk{cursor:pointer}
+html[data-role=pad] .pc.me .pname::after{content:"YOU";margin-left:6px;font-size:10px;letter-spacing:.08em;background:var(--brass);color:#2a1b06;border-radius:4px;padding:1px 5px;vertical-align:2px;font-family:var(--body)}
+.padcode{display:block;width:100%;margin:12px 0 4px;padding:14px;border-radius:12px;border:2px solid #b79d66;background:#fff8e6;color:#2b2017;font:800 34px/1 var(--body),system-ui,sans-serif;letter-spacing:.35em;text-align:center;text-transform:uppercase}
+html[data-role=pad] .stage-ui .icon-btn[data-act=resetview]{display:grid}
+
+/* ====== TV ====== */
+html[data-role=tv] .stage-ui,html[data-role=tv] #hand,html[data-role=tv] #devs,html[data-role=tv] #builds,
+html[data-role=tv] #primary,html[data-role=tv] #modechip,html[data-role=tv] .undo,html[data-role=tv] #ticker{display:none!important}
+html[data-role=tv] #msg{font-size:24px;line-height:1.25}
+html[data-role=tv] #msg .sub{font-size:16px;margin-top:6px;opacity:.85}
+html[data-role=tv] .rail-log{font-size:15px}
+html[data-role=tv] .sheet .btns{display:none}
+html[data-role=tv] .sheet.tvlobby{max-width:min(1120px,94vw);width:min(1120px,94vw);display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3vw,48px);align-items:center;padding:clamp(18px,3vw,40px)}
+.tvlobby h1{font-family:var(--display);font-size:clamp(40px,6vw,76px);margin:0 0 4px;color:#2b2017}
+.tl-tag{font-size:clamp(18px,2.2vw,28px);margin:0 0 14px;color:#4a3720;font-weight:700}
+.tl-qr{display:inline-block;padding:10px;background:#fff;border-radius:18px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.tl-qr svg{display:block;width:min(36vh,34vw,320px);height:auto}
+.tl-code{margin:14px 0 0;font-size:clamp(16px,1.9vw,24px);color:#4a3720;line-height:1.5;word-break:break-all}
+.tl-code b{font-family:var(--display);font-size:1.7em;letter-spacing:.2em;color:#2b2017}
+.tl-warn{margin:10px 0 0;padding:8px 12px;border-radius:10px;background:#f3d4c6;color:#7a2a18;font-weight:700}
+.tl-right h2{font-family:var(--display);font-size:clamp(24px,3vw,38px);margin:0 0 6px;color:#2b2017}
+.tl-note{margin:16px 0 0;font-size:clamp(15px,1.7vw,21px);color:#4a3720}
+.tvlobby .roster li{font-size:clamp(18px,2.2vw,28px);padding:14px 16px}
+.tvlobby .roster li b{font-size:.62em}
+#tvlink{position:fixed;left:14px;bottom:14px;z-index:6;pointer-events:none}
+.tvl{display:flex;gap:12px;align-items:center;padding:8px 12px 8px 8px;border-radius:14px;background:rgba(20,12,6,.72);border:1px solid #4a3a2c;color:var(--parchment)}
+.tvl.warn{background:rgba(110,28,18,.94);border-color:#e0664a;padding:12px 16px 12px 12px}
+.tvl .qr{display:block;border-radius:8px}
+.tvl-t b{display:block;font-size:15px}
+.tvl.warn .tvl-t b{font-size:22px}
+.tvl-dots{display:flex;gap:10px;margin-top:4px;font-size:13px;opacity:.95}
+.tvl-dots span{display:flex;align-items:center;gap:5px}.tvl-dots span.off{opacity:.55}
+.tvl-dots i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.tvl small{display:block;margin-top:4px;font-size:15px;opacity:.9}
+@media (max-width:720px){html[data-role=tv] .sheet.tvlobby{grid-template-columns:1fr}}
+
+/* ====== TV: board full screen, small floating overlays ====== */
+/* join QR: small corner card instead of a full-screen sheet */
+html[data-role=tv] .tvl.warn{padding:8px 12px 8px 8px;gap:10px}
+html[data-role=tv] .tvl.warn .tvl-t b{font-size:16px}
+html[data-role=tv] .tvl small{font-size:12px}
+/* native app WebView renders at 2x density: keep the join card small */
+html[data-role=tv] #nogl{display:none!important}
+
+/* ====== 3-6 players ====== */
+#scores[data-n="3"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+#scores[data-n="4"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+#scores[data-n="5"],#scores[data-n="6"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+html.manyp #scores .pc{padding:4px 6px 5px 11px;gap:0 6px}
+html.manyp #scores .pname{font-size:14px}
+html.manyp #scores .vp{font-size:21px}
+html.manyp #scores .vp small{font-size:10px}
+html.manyp #scores .pstats{font-size:10px;gap:0 6px}
+html.manyp #scores .pstats span:nth-child(n+2){display:none}
+html.manyp #scores .badge{font-size:8px;padding:1px 4px}
+html[data-role=tv] .tvl-dots{flex-wrap:wrap;max-width:230px;gap:2px 8px}
+html[data-role=tv] .tvl.warn .tvl-t b{max-width:230px}
+
+
+/* ====== TV: one column down the right (scores, dice and status, QR) ====== */
+html[data-role=tv]{--col:clamp(200px,15vw,270px)}
+html[data-role=tv] #app{display:grid!important;grid-template-columns:minmax(0,1fr) var(--col);grid-template-rows:auto minmax(0,1fr);grid-template-areas:"stage scores" "stage rail"}
+html[data-role=tv] #stage{grid-area:stage;position:relative;inset:auto;width:auto;height:auto;min-height:0}
+html[data-role=tv] #scores{grid-area:scores;display:flex!important;flex-direction:column;gap:8px;position:static;max-width:none;margin:0;padding:12px;border:0;border-left:1px solid var(--line);background:linear-gradient(180deg,#2a1f17,#1d1610);pointer-events:none}
+html[data-role=tv] #scores .pc{padding:7px 10px 7px 14px}
+html[data-role=tv] #scores .pname{font-size:19px}
+html[data-role=tv] #scores .vp{font-size:26px}
+html[data-role=tv] #scores .pstats{font-size:11px;gap:0 7px}
+html[data-role=tv].manyp #scores .pstats span{display:inline}
+html[data-role=tv] #scores[data-n="5"] .pc,html[data-role=tv] #scores[data-n="6"] .pc{padding:3px 8px 3px 12px}
+html[data-role=tv] #scores[data-n="5"] .pname,html[data-role=tv] #scores[data-n="6"] .pname{font-size:15px}
+html[data-role=tv] #scores[data-n="5"] .vp,html[data-role=tv] #scores[data-n="6"] .vp{font-size:20px}
+html[data-role=tv] #scores[data-n="5"] .pstats span:nth-child(n+3),html[data-role=tv] #scores[data-n="6"] .pstats span:nth-child(n+3){display:none}
+html[data-role=tv] #scores[data-n="5"] .badges,html[data-role=tv] #scores[data-n="6"] .badges{display:none}
+html[data-role=tv] #rail{grid-area:rail;position:static;transform:none;display:flex!important;flex-direction:column;gap:10px;width:auto;max-width:none;margin:0;padding:12px;border:0;border-left:1px solid var(--line);border-top:1px solid var(--line);border-radius:0;box-shadow:none;background:linear-gradient(180deg,#1d1610,#150f0a);overflow:hidden;pointer-events:none}
+html[data-role=tv] #rail .r-top{display:grid;grid-template-columns:1fr;gap:8px}
+html[data-role=tv] #msg{font-size:20px}
+html[data-role=tv] #msg .sub{font-size:14px;margin-top:4px}
+html[data-role=tv] #tvlink{position:static;margin-top:auto;pointer-events:none}
+html[data-role=tv] .tvl{width:100%;box-sizing:border-box}
+html[data-role=tv] .tvl.warn{padding:8px 10px 8px 8px;gap:10px}
+html[data-role=tv] .tvl.warn .tvl-t b{font-size:15px;max-width:none}
+html[data-role=tv] .tvl small{font-size:12px}
+html[data-role=tv] .tvl-dots{flex-wrap:wrap;max-width:none;gap:2px 8px}
+/* join card: sits at the bottom of the same column while the lobby is open */
+html[data-role=tv] .rail-log{display:none!important}
+html[data-role=tv] .tvl.warn .tvl-dots span.on{display:none}
+
+/* ====== TV front page (shown whenever no game is running) ====== */
+html.tvlobby #scores,html.tvlobby #rail{visibility:hidden}
+html.tvlobby #ov{inset:0;width:auto;padding:0;align-items:stretch;justify-content:stretch;background:radial-gradient(ellipse at 28% 42%,#3d2c1d 0%,#1b130d 55%,#0b0704 100%)!important;backdrop-filter:none;-webkit-backdrop-filter:none;pointer-events:none}
+.fp{display:grid;grid-template-columns:1.05fr 1fr;gap:4vw;align-items:center;width:100%;box-sizing:border-box;padding:4vh 5vw;color:var(--parchment)}
+.fp-brand{text-align:center}
+.fp-logo{width:min(36vh,27vw);height:auto;border-radius:22%;box-shadow:0 16px 56px rgba(0,0,0,.6),0 0 0 3px rgba(216,167,68,.35)}
+.fp-brand h1{font-family:var(--display);font-weight:400;font-size:clamp(44px,10vh,120px);line-height:1;margin:2.4vh 0 0;letter-spacing:.02em;color:var(--parchment)}
+.fp-tag{font-size:clamp(15px,3.2vh,34px);color:var(--brass);margin:1.2vh 0 0}
+.fp-sub{font-size:clamp(12px,2.2vh,24px);color:var(--muted);margin:1vh 0 0}
+.fp-join{background:var(--paper);color:var(--ink);border-radius:20px;padding:3vh 2.4vw;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.fp-scan{margin:0 0 1.6vh;font-size:clamp(13px,2.6vh,28px);font-weight:700;color:#4a3720}
+.fp .tl-qr{padding:.8vh;border-radius:14px}
+.fp .tl-qr svg{width:min(28vh,17vw)}
+.fp .tl-code{margin:1.4vh 0 0;font-size:clamp(11px,2vh,22px)}
+.fp .roster{margin:1.8vh 0 0;gap:.8vh;text-align:left}
+.fp .roster li{font-size:clamp(12px,2.4vh,26px);padding:.55em .8em}
+.fp .roster li b{font-size:.62em}
+.fp .tl-note{margin:1.4vh 0 0;font-size:clamp(10px,1.8vh,20px)}
+#splash{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6vh;background:radial-gradient(ellipse at 50% 42%,#3d2c1d 0%,#1b130d 55%,#0b0704 100%);color:var(--parchment);text-align:center;transition:opacity .8s ease}
+#splash.hide{opacity:0;pointer-events:none}
+#splash img{width:min(44vh,34vw);border-radius:22%;box-shadow:0 16px 60px rgba(0,0,0,.6),0 0 0 3px rgba(216,167,68,.35)}
+#splash h1{font-family:var(--display);font-weight:400;font-size:clamp(48px,12vh,140px);line-height:1;margin:1vh 0 0}
+#splash p{margin:0;font-size:clamp(16px,3.4vh,36px);color:var(--brass)}
+#splash h1{color:var(--parchment)!important;text-shadow:0 3px 18px rgba(0,0,0,.6)}
+
+html[data-role=tv] .tvl,html[data-role=tv] #ov{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}

@@ -1,0 +1,37 @@
+{
+ "name": "Tidehaven (phone)",
+ "short_name": "Tidehaven",
+ "start_url": "pad.html",
+ "scope": "./",
+ "display": "fullscreen",
+ "orientation": "portrait",
+ "background_color": "#17110c",
+ "theme_color": "#17110c",
+ "icons": [
+  {
+   "src": "icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "categories": [
+  "games"
+ ],
+ "id": "./pad.html",
+ "display_override": [
+  "fullscreen",
+  "standalone"
+ ],
+ "description": "Controller for Tidehaven on the TV"
+}

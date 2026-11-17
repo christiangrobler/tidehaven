@@ -1,0 +1,7 @@
+android/build/
+android/debug.keystore
+android/*.apk
+android/*.idsig
+*.idsig
+.DS_Store
+Thumbs.db
