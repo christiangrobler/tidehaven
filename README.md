@@ -20,6 +20,25 @@ A 3D island trading and building board game for the **big screen**. The TV (or a
 
 More detail: [Install](docs/INSTALL.md) - [Controllers](docs/CONTROLLERS.md) - [How to play](docs/HOW-TO-PLAY.md) - [Build from source](docs/BUILD.md) - [Troubleshooting](docs/TROUBLESHOOTING.md)
 
+## Or let Claude do it: grab the repo, point it at your TV, build
+
+If you use [Claude Code](https://claude.com/claude-code), you can skip the manual steps. This repo includes a [`CLAUDE.md`](CLAUDE.md) that tells Claude how to build and install the app.
+
+1. On the TV turn on **Developer options -> USB debugging / Network debugging** (Settings -> About -> click *Build* 7 times first) and note the TV's IP address (Settings -> Network).
+2. Open a terminal and run:
+
+```bash
+git clone https://github.com/christiangrobler/tidehaven.git
+cd tidehaven
+claude
+```
+
+3. Tell Claude:
+
+> Build Tidehaven and install it on my Android TV at 192.168.1.50 (use my TV's IP). Install any tools you need, then launch it and show me a screenshot.
+
+Claude will set up the Android SDK if needed, run `android/build.py`, connect to the TV with `adb`, install the APK, start the app and check that the QR code appears. Accept the "Allow debugging" prompt on the TV when it asks.
+
 ## No Android TV? Play in a browser
 
 You only need to serve the `game/` folder over HTTP.
