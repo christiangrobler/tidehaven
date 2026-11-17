@@ -284,7 +284,7 @@ function aiPending(pd,force){
   return false;
 }
 
-/* ---------- Cities & Knights turn actions ---------- */
+/* ---------- Guilds & Garrisons turn actions ---------- */
 function aiCK(p){
   const pl=P(p);
   // play progress cards
@@ -311,7 +311,7 @@ function aiCK(p){
   return false;
 }
 
-/* ---------- Traders & Barbarians turn actions ---------- */
+/* ---------- Frontier & Raiders turn actions ---------- */
 function aiTB(p){
   const pl=P(p),sc=G.opts.scen,v=VARS();
   if(G.eOwn.some(o=>o&&o.p===p&&o.dmg)&&canAfford(p,COST.road)&&repairRoad())return true;

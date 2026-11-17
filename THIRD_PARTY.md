@@ -12,6 +12,4 @@ Each library keeps its own license notice in its source header.
 Tidehaven is an independent, fan-made board game in the style of classic island
 resource-trading games. It is not affiliated with or endorsed by the owners of
 any commercial board game. All art is original vector art drawn in code, and no
-third-party game assets are included. If you fork this project for wider
-distribution, consider replacing the remaining references to commercial game
-names in `game/js/tb.js` and `game/js/tbui.js`.
+third-party game assets are included. Game and expansion names in the interface are original to this project.

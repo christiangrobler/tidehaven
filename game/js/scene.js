@@ -319,7 +319,7 @@ function buildBoard(){
       const len=Math.hypot(en.x-s.x,en.y-s.y);const pl=new THREE.Mesh(GEO.plank,MAT.wood);pl.scale.x=len;pl.position.set((s.x+en.x)/2,.105,(s.y+en.y)/2);pl.rotation.y=-Math.atan2(dy,dx);pl.castShadow=true;pl.receiveShadow=true;GL.board.add(pl);
       const po=new THREE.Mesh(GEO.post,MAT.wood);po.position.set(en.x,.04,en.y);po.castShadow=true;GL.board.add(po);});
   });
-  // traders & barbarians statics
+  // frontier & raiders statics
   const lake=G.board.hexes.findIndex(h=>h.t==='lake');
   if(lake>=0){const c=T.hexes[lake].c;const b=new THREE.Mesh(GEO.token,MAT.tokenSide);b.position.set(c.x,TOP+.0225,c.y);GL.board.add(b);
     const t=new THREE.Mesh(GEO.tokenTop,new THREE.MeshStandardMaterial({map:cachedTex('lake',()=>discCanvas((x,S)=>{x.fillStyle='#2b2118';x.font='bold 64px Georgia, serif';x.fillText('2 · 3',S/2,S*.38);x.fillText('11 · 12',S/2,S*.62);x.font='bold 26px Georgia';x.fillText('FISH',S/2,S*.84);})),roughness:.8}));

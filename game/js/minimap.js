@@ -155,7 +155,7 @@ const Mini=(function(){
       o+=`<circle cx="${f(c.x+ox)}" cy="${f(c.y)}" r=".27" fill="#e3c586" stroke="#111" stroke-width=".03"/><text x="${f(c.x+ox)}" y="${f(c.y+.12)}" class="mn s">${v.n}</text><text x="${f(c.x+ox)}" y="${f(c.y+.5)}" class="mt">${v.cloth}</text>`;});
     return o;
   }
-  /* ---------- Traders & Barbarians extras ---------- */
+  /* ---------- Frontier & Raiders extras ---------- */
   function drawRivers(){
     let o='';
     (G.board.rivers||[]).forEach(idx=>{

@@ -1,7 +1,7 @@
 'use strict';
 /* =====================================================================
-   TRADERS & BARBARIANS module
-   Variants: Catan for Two, Friendly Robber, Event Cards, Harbormaster
+   FRONTIER & RAIDERS module
+   Variants: Tidehaven for Two, Friendly Robber, Event Cards, Harbormaster
    Scenarios: Fishermen, Rivers, Caravans, Barbarian Attack
    ===================================================================== */
 ['lake','swamp','oasis','castle'].forEach(t=>LAND_T.add(t));
@@ -155,7 +155,7 @@ function tbAfterBuild(kind,i,p,setup){
   if((kind==='settlement'||kind==='city')&&sc==='barbattack'&&!setup)barbLanding();
 }
 
-/* ---- Catan for Two ---- */
+/* ---- Tidehaven for Two ---- */
 function neutralTargets(kind){
   const out={};
   [2,3].forEach(n=>{

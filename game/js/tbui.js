@@ -1,6 +1,6 @@
 'use strict';
 /* =====================================================================
-   TRADERS & BARBARIANS: interface pieces
+   FRONTIER & RAIDERS: interface pieces
    ===================================================================== */
 const VAR_LIST=[['two','Two-player rules','Two neutral players grow whenever you build roads and settlements, you roll twice each turn, and trade tokens let you force trades or send the robber home.'],
   ['friendly','Friendly Robber','The robber leaves players with 2 points or fewer alone.'],
@@ -148,11 +148,11 @@ function tbEventChip(){
   return `<button class="evc" data-act="evlist"><span class="num${c.n===6||c.n===8?' hot':''}">${c.n}</span><span><b>${e.n}</b><small>${e.d}${left!=null?` · ${left} left before reshuffle`:''}</small></span></button>`;
 }
 
-/* ---- how to play: Traders & Barbarians ---- */
+/* ---- how to play: Frontier & Raiders ---- */
 function tbRulesHTML(sc){
   const o=[];const row=(h,t)=>o.push(`<dt>${h}</dt><dd>${t}</dd>`);const card=(h,t)=>`<div class="tbc"><b>${h}</b><p>${t}</p></div>`;
   const id=sc&&sc.tb;
-  if(sc&&sc.tbBoard)row('Traders &amp; Barbarians: '+esc(sc.name),esc(sc.sub)+' Scenarios are for two players, on the Catan island, and every normal rule still applies.');
+  if(sc&&sc.tbBoard)row('Frontier &amp; Raiders: '+esc(sc.name),esc(sc.sub)+' Scenarios are for two players, on the Tidehaven island, and every normal rule still applies.');
   if(id==='fish'){
     row('Fishermen: the board','A lake sits in the middle of the island (numbers 2, 3, 11 and 12) and six fishing grounds ring the coast (4, 5, 6, 8, 9, 10). A settlement or city touching the lake or a ground catches fish when its number rolls: 1 fish token for a settlement, 2 for a city. The robber on the lake stops it.');
     row('Fish tokens','There are tokens worth 1, 2 and 3 fish. You may hold up to 7 tokens, keeping the biggest if you catch more. Your second starting settlement also catches fish at once if it touches the lake or a ground. Fish are not cards: they cannot be stolen, traded or discarded on a 7.');

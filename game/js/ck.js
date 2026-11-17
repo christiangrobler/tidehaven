@@ -1,6 +1,6 @@
 'use strict';
 /* =====================================================================
-   CITIES & KNIGHTS module: commodities, improvements, metropolises,
+   GUILDS & GARRISONS module: commodities, improvements, metropolises,
    knights, barbarians, event die, progress cards, walls, merchant
    ===================================================================== */
 const TRACKS=['trade','politics','science'];

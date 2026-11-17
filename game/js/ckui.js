@@ -1,6 +1,6 @@
 'use strict';
 /* =====================================================================
-   CITIES & KNIGHTS: interface pieces
+   GUILDS & GARRISONS: interface pieces
    ===================================================================== */
 const CK=()=>!!(G&&G.opts&&G.opts.ck);
 function ckTargets(p){
