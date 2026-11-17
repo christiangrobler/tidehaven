@@ -37,7 +37,7 @@ for d in ("res_c", "classes", "dex", "assets/www"):
 for d in ("mipmap-xxxhdpi", "drawable"):
     os.makedirs(os.path.join(ROOT, "res", d), exist_ok=True)
 shutil.copy(os.path.join(GAME, "icons", "icon-512.png"), os.path.join(ROOT, "res", "mipmap-xxxhdpi", "ic_launcher.png"))
-shutil.copy(os.path.join(GAME, "icons", "icon-512.png"), os.path.join(ROOT, "res", "drawable", "banner.png"))
+# (res/drawable/banner.png, the TV app-row banner, is the Tidehaven logo and is committed as is)
 
 # bundle the game (the service worker is not needed inside the app)
 shutil.copytree(GAME, os.path.join(B, "assets", "www"), dirs_exist_ok=True)

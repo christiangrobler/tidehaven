@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/images/logo.png" alt="Tidehaven" width="560"></p>
+
 # Tidehaven
 
 A 3D island trading and building board game for the **big screen**. The TV (or a computer) shows the board; every player uses their own **phone, tablet or computer as a private remote control** with their hand of cards and a mini map for building.
