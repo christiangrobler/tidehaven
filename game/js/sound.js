@@ -75,6 +75,9 @@ const FX={
   robber(t,o){sTone(t,95,.45,{g:.5,f1:42,out:o.out});sNoise(t,.4,{type:'lowpass',f:520,f2:110,g:.4,out:o.out});},
   knight(t,o){sNoise(t,.13,{f:5200,q:6,g:.22,out:o.out});sTone(t,1250,.2,{g:.06,type:'square',out:o.out});FX.place(t+.02,o);},
   bell(t,o){[523,784,1046].forEach((f,i)=>sTone(t,f,1.2/(1+i*.55),{g:.1/(1+i*.5),out:o.out}));},
+  /* church bell: strike partials of a real bell (hum, prime, tierce, quint, nominal...) with a clapper tick; two quick strikes, high then low */
+  church(t,o){const strike=(tt,f,g)=>{[[.5,.9,1],[1,1.1,1],[1.2,.9,.7],[1.5,.8,.6],[2,.7,.55],[2.5,.55,.3],[3,.45,.25],[4,.35,.18]].forEach(p=>sTone(tt,f*p[0],p[1]*1.15,{g:g*.16*p[2]/(1+p[0]*.25),a:.003,out:o.out}));sNoise(tt,.035,{f:3200,q:2,g:.12*g,out:o.out});};
+    const v=o.s==null?1:o.s;strike(t,440,v);strike(t+.42,330,.9*v);},
   win(t,o){[523,659,784,1046,1319].forEach((f,i)=>sTone(t+i*.13,f,1,{g:.14,type:'triangle',out:o.out}));},
   bad(t,o){sTone(t,230,.2,{g:.13,f1:140,type:'sawtooth',out:o.out});},
   horn(t,o){sTone(t,118,1,{g:.12,f1:104,type:'sawtooth',a:.12,out:o.out});sTone(t,177,1,{g:.06,f1:156,type:'sawtooth',a:.15,out:o.out});},
@@ -131,6 +134,11 @@ document.addEventListener('visibilitychange',()=>{if(!SND.ac)return;if(document.
 const SW={id:null,v:[],e:[]};
 function sndWatch(){
   try{
+    if(G&&!G.preview&&G.board&&G.winner==null){                  // a church bell when the turn passes to the next player
+      const tk=G.board.id+'|'+G.cur,isPad=typeof PAD!=='undefined'&&PAD.role==='pad';
+      if(SW.tid===G.board.id&&SW.cur!==G.cur){if(!isPad)sfx('church',{s:1});else if(G.cur===PAD.seat)sfx('church',{s:.8});}
+      SW.tid=G.board.id;SW.cur=G.cur;
+    }else{SW.tid=null;}
     if(!G||G.preview||!G.vOwn||!G.eOwn){SW.id=null;return;}
     if(typeof GL!=='undefined'&&GL.ready)return;              // the 3D board plays its own building sounds
     const id=G.board.id;
