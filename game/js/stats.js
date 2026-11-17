@@ -50,7 +50,7 @@ const Stats=(function(){
 
   /* ---- fair dice: a shuffled deck of all 36 rolls ---- */
   function drawDice(){
-    if(!(G&&G.opts&&G.opts.fair))return [1+Math.floor(rnd()*6),1+Math.floor(rnd()*6)];
+    if(!(G&&G.opts&&G.opts.fair))return [rollDie(),rollDie()];
     if(!G.fair||G.fair.length<5)G.fair=shuffle([...Array(36).keys()]);
     const c=G.fair.pop();return [1+Math.floor(c/6),1+c%6];
   }

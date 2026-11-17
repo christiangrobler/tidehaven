@@ -33,6 +33,8 @@ const SQ3=Math.sqrt(3);
    ===================================================================== */
 const $=s=>document.querySelector(s);
 const rnd=Math.random;
+/* one fair die: the browser's cryptographic random source, with rejection sampling so every face has exactly the same chance (252 = 6 x 42) */
+function rollDie(){try{const a=new Uint8Array(1);do{crypto.getRandomValues(a);}while(a[0]>=252);return 1+a[0]%6;}catch(e){return 1+Math.floor(rnd()*6);}}
 const rep=(x,n)=>Array(n).fill(x);
 const zero=()=>({wood:0,brick:0,wool:0,grain:0,ore:0});
 const sum=o=>RES.reduce((s,r)=>s+(o[r]||0),0);
@@ -449,7 +451,7 @@ function produce(n){
 }
 function doRoll(d){
   if(!canRoll())return null;
-  if(G.opts.ck&&d.length<3)d=d.concat([Math.ceil(rnd()*6)]);
+  if(G.opts.ck&&d.length<3)d=d.concat([rollDie()]);
   const need=VARS().two?2:1;const n0=d[0]+d[1];
   if(need===2&&(G.rollCount||0)===1&&n0===G.firstN){G.dice=d;return {n:n0,reroll:true};}
   G.rollCount=(G.rollCount||0)+1;if(G.rollCount===1)G.firstN=n0;

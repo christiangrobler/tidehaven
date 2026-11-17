@@ -119,7 +119,7 @@ function startRoll(){
   if(!G||!canRoll()||UI.busy)return;
   if(PAD.role==='pad'){PAD.sendRoll();return;}
   const card=VARS().events?drawEvent():null;
-  const d=card?diceFor(card.n):G.alch?G.alch.slice():Stats.drawDice();if(CK())d.push(1+Math.floor(rnd()*6));
+  const d=card?diceFor(card.n):G.alch?G.alch.slice():Stats.drawDice();if(CK())d.push(rollDie());
   UI.busy=true;UI.mode=null;Dice3D.hide();const land=Dice3D.toss(d);
   if(land){setTimeout(()=>{animateDice(d);},Math.max(0,land-260));}else{animateDice(d);sfx('dice');}
   renderRail();syncMarkers();
