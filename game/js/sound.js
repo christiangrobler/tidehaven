@@ -84,7 +84,8 @@ const FX={
   click(t,o){sNoise(t,.02,{f:2600,q:3,g:.18,out:o.out});}
 };
 const BUILDK={settle:1,city:1,road:1,ship:1};
-function sfx(kind,o){o=o||{};const ac=audio();if(!ac)return;
+function sfx(kind,o){o=o||{};if(typeof PAD!=='undefined'&&PAD.role==='tv')return;   // the TV only plays the ocean and the birds; every other sound comes from the phones and computers
+  const ac=audio();if(!ac)return;
   try{const t=ac.currentTime+(o.delay||0);let out=sOut(o.pan);
     if(BUILDK[kind]&&o.s!=null&&o.s!==1){const g=ac.createGain();g.gain.value=o.s;g.connect(out);out=g;}
     const opt={out,s:BUILDK[kind]?1:(o.s==null?1:o.s)};
@@ -144,9 +145,13 @@ function sndWatch(){
     const id=G.board.id;
     const vs=G.vOwn.map(o=>o?(o.p+(o.city?'c':'s')):''),es=G.eOwn.map(o=>o?(o.p+(o.k||'road')):'');
     const dk=G.dice?G.turn+':'+G.dice.join(','):'';
-    if(SW.id!==id){SW.id=id;SW.v=vs;SW.e=es;SW.d=dk;return;}   // first sight of a board: stay quiet
+    const rk=G.robber+'|'+G.pirate,kc=(G.opts&&G.opts.ck&&G.kn)?Object.keys(G.kn).length:0,mk=G.merchant?G.merchant.h+':'+G.merchant.p:'';
+    if(SW.id!==id){SW.id=id;SW.v=vs;SW.e=es;SW.d=dk;SW.rk=rk;SW.kc=kc;SW.mk=mk;SW.pir=G.pirate;return;}   // first sight of a board: stay quiet
     if(dk&&dk!==SW.d&&typeof PAD!=='undefined'&&PAD.role==='pad'&&G.cur!==PAD.seat)sfx('dice',{s:.5});   // someone else rolled
     SW.d=dk;
+    if(rk!==SW.rk){const pir=G.pirate!==SW.pir;sfx(pir?'ship':'robber',{s:.8});}   // robber or pirate moved
+    else if(kc>SW.kc)sfx('knight',{s:.8});else if(mk&&mk!==SW.mk)sfx('place',{s:.8});
+    SW.rk=rk;SW.kc=kc;SW.mk=mk;SW.pir=G.pirate;
     const ev=[];
     vs.forEach((x,i)=>{if(x&&x!==SW.v[i])ev.push({k:/c$/.test(x)?'city':'settle',p:parseInt(x)});});
     es.forEach((x,i)=>{if(x&&x!==SW.e[i])ev.push({k:/ship/.test(x)?'ship':'road',p:parseInt(x)});});

@@ -25,6 +25,12 @@ Tip: *Add to Home Screen* (iPhone: Share -> Add to Home Screen; Android Chrome: 
 
 If you cannot read the address, find the TV's IP in Settings -> Network and use `http://<TV-IP>:8080/pad.html`.
 
+## Sound
+
+- **The TV** plays only the ocean and the birds.
+- **Phones and computers** play everything else: dice, building roads, settlements and cities, cards, trades, the robber, and a church bell when it becomes your turn.
+- Phones only start playing sound after your first tap on the controller, and an iPhone's silent switch mutes it. Turn the volume up and flip the switch off.
+
 ## Rejoining
 
 If a phone locks, loses signal or reloads, open the controller page again and it takes its seat back automatically. The TV remembers the game even if the app is closed. To clear a leftover game, use **Reset all devices** in the controller menu.
