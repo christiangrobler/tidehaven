@@ -76,7 +76,7 @@
         if(!(UI.sheet&&UI.sheet.type==='pwait'))break;
         const tr=UI.trade,other=tradeQ();
         if(m.ok&&tr&&playerTrade(tr.og,tr.ot,other)){UI.sheet=null;tr.og=zero();tr.ot=zero();if(window.sfx)sfx('coin');toast(`${nm(other)} accepted the trade.`);}
-        else{UI.sheet={type:'trade'};toast(m.why==='offline'?`${nm(other)}’s phone is offline.`:`${nm(other)} declined.`);}
+        else{UI.sheet={type:'trade'};tradeDeclined(m.why==='offline'?`${nm(other)}’s phone is offline, so the offer didn’t reach them.`:`${nm(other)} declined your offer.`);}
         refresh();break;}
       case 'bye':try{localStorage.removeItem(CODEK);localStorage.setItem('tidehaven.pad.bye','1');localStorage.setItem('tidehaven.pad.noauto','1');}catch(e){}location.hash='';location.reload();break;
       case 'claimNo':PAD.free=m.free||[];toast('That player is already taken.');refresh();break;

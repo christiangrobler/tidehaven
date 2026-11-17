@@ -330,7 +330,8 @@ function sheetHTML(s){
         <h3>You get from ${esc(nm(q))}</h3><div class="stps${cls}">${hk.map(r=>stepper('ot',r,tr.ot[r]||0,9,null)).join('')}</div>
         <p class="lead" style="font-size:13.5px;margin-top:10px">${esc(nm(q))} holds ${handCount(q)} cards. Talk it over, then send the offer.</p>
         <div class="btns"><button class="btn primary" data-act="toffer" ${ok?'':'disabled'}>Offer to ${esc(nm(q))}</button></div>`;}
-    return `<div class="sheet"><h2>Trade</h2><div class="tabs"><button class="${tr.tab==='bank'?'sel':''}" data-act="ttab" data-v="bank">Bank &amp; harbors</button><button class="${tr.tab==='player'?'sel':''}" data-act="ttab" data-v="player">With ${esc(nm(q))}</button></div>${body}
+    const dn=tr.note&&tr.note.sig===tradeSig()?`<p class="note declined" role="alert"><b>${esc(tr.note.txt)}</b> Change the offer and try again, or pick something else.</p>`:'';
+    return `<div class="sheet"><h2>Trade</h2><div class="tabs"><button class="${tr.tab==='bank'?'sel':''}" data-act="ttab" data-v="bank">Bank &amp; harbors</button><button class="${tr.tab==='player'?'sel':''}" data-act="ttab" data-v="player">With ${esc(nm(q))}</button></div>${dn}${body}
       <div class="btns"><button class="btn ghost" data-act="close">Done</button></div></div>`;}
   case 'offer':{const tr=UI.trade,q=tradeQ(),can=canAfford(q,tr.ot);
     return `<div class="sheet"><h2>${esc(nm(q))}, accept this trade?</h2><p class="lead">${esc(nm(G.cur))} offers:</p>
@@ -497,7 +498,7 @@ const ACT={
   tgive(d){UI.trade.give=d.r;if(UI.trade.get===d.r)UI.trade.get=null;refresh();},
   tget(d){UI.trade.get=d.r;refresh();},
   tbank(){const tr=UI.trade;const snap=Undo.snap('trade');if(bankTrade(tr.give,tr.get)){Undo.commit(snap);sfx('coin');UI.bump=[tr.get];if(P(G.cur).res[tr.give]<rates(G.cur)[tr.give])tr.give=null;}refresh();},
-  toffer(){if(aiOn()){const tr=UI.trade,ai=tradeQ();if(aiAcceptTrade(tr.og,tr.ot,ai)&&playerTrade(tr.og,tr.ot,ai)){sfx('coin');toast(`${nm(ai)} accepts the trade.`);tr.og=zero();tr.ot=zero();UI.sheet=null;}else{const c=aiCounter(tr.og,tr.ot,ai);if(c){UI.aiOffer={kind:'counter',mine:false,ai,aiGives:c.aiGives,aiGets:c.aiGets};UI.sheet=null;sfx('card');}else toast(`${nm(ai)} declines.`);}refresh();return;}UI.sheet={type:'offer'};refresh();},
+  toffer(){if(aiOn()){const tr=UI.trade,ai=tradeQ();if(aiAcceptTrade(tr.og,tr.ot,ai)&&playerTrade(tr.og,tr.ot,ai)){sfx('coin');toast(`${nm(ai)} accepts the trade.`);tr.og=zero();tr.ot=zero();UI.sheet=null;}else{const c=aiCounter(tr.og,tr.ot,ai);if(c){UI.aiOffer={kind:'counter',mine:false,ai,aiGives:c.aiGives,aiGets:c.aiGets};UI.sheet=null;sfx('card');}else tradeDeclined(`${nm(ai)} declined your offer.`);}refresh();return;}UI.sheet={type:'offer'};refresh();},
   nplayers(d){UI.setup.n=+d.v;if(+d.v===1&&setupCpu()===0)UI.setup.cpu=1;UI.setup.target=null;fitSetup();previewGame(null);refresh();},
   tpartner(d){UI.trade.q=+d.q;refresh();},
   steal(d){const r=stealFrom(+d.q);if(r){sfx('card');toast(r.stolen?`${nm(G.cur)} stole 1 ${r.stolen==='cloth'?'cloth':RNAME[r.stolen]} from ${nm(r.from)}.`:'Nothing to steal.');}refresh();},
@@ -516,7 +517,7 @@ const ACT={
     if(o.kind==='propose'&&o.mine){const sw=aiSweeten(o);if(sw){UI.aiOffer=sw;sfx('card');refresh();return;}}
     UI.sheet=!o.mine&&UI.trade?{type:'trade'}:null;toast(o.mine?`${nm(ai)} shrugs and carries on.`:`${nm(ai)} keeps its cards.`,1600);refresh();},
   taccept(){const tr=UI.trade,q=tradeQ();if(playerTrade(tr.og,tr.ot,q)){sfx('coin');toast(`${nm(q)} accepted the trade.`);UI.trade.og=zero();UI.trade.ot=zero();UI.sheet=null;}refresh();},
-  tdecline(){toast(`${nm(tradeQ())} declined.`);UI.sheet={type:'trade'};refresh();}
+  tdecline(){tradeDeclined(`${nm(tradeQ())} declined your offer.`);UI.sheet={type:'trade'};refresh();}
 };
 document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const f=ACT[b.dataset.act];if(f){e.preventDefault();f(b.dataset,b);}});
 document.addEventListener('input',e=>{const id=e.target.id;if(/^n[0-5]$/.test(id)){UI.setup.names[+id[1]]=e.target.value;if(G&&G.preview&&G.players[+id[1]]){G.players[+id[1]].name=e.target.value.trim()||`Player ${+id[1]+1}`;renderScores();}}});
@@ -527,6 +528,9 @@ Object.assign(ACT,CKACT,TBACT);
 /* =====================================================================
    SAVE / BOOT
    ===================================================================== */
+/* remembers that the other player turned the offer down, and shows it inside the trade window until the offer changes */
+function tradeSig(){return UI.trade?JSON.stringify([UI.trade.og,UI.trade.ot,tradeQ()]):'';}
+function tradeDeclined(txt){if(UI.trade)UI.trade.note={sig:tradeSig(),txt};}
 const SAVE_KEY='tidehaven.save.v2';
 function save(){if(!G||G.preview||PAD.role==='pad')return;try{localStorage.setItem(SAVE_KEY,JSON.stringify(G));}catch(e){}}
 function loadSave(){try{const s=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(s&&s.ver===2&&s.winner==null)return s;}catch(e){}return null;}
