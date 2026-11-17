@@ -5,3 +5,5 @@ android/*.idsig
 *.idsig
 .DS_Store
 Thumbs.db
+__pycache__/
+*.pyc
