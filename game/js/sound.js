@@ -156,7 +156,8 @@ function sndWatch(){
     sfx(ev[0].k,{s:(mine==null||ev[0].p===mine)?1:.55});
   }catch(e){}
 }
-if(typeof PAD!=='undefined'&&PAD.role)SND.ambOn=false;          // no surf and gulls on the phones and TV
+if(typeof PAD!=='undefined'&&PAD.role==='pad')SND.ambOn=false;   // no surf and gulls on the phones
+if(typeof PAD!=='undefined'&&PAD.role==='tv'){SND.ambOn=true;setTimeout(()=>{try{audio();}catch(e){}},0);}   // the TV plays the ocean and the birds, from the moment it opens
 
 
 /* ---------- phones and tablets only play sound after a tap, and iPhones mute it with the silent switch ---------- */
