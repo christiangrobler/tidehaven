@@ -115,7 +115,7 @@ html.tvlobby #scores,html.tvlobby #rail{visibility:hidden}
 html.tvlobby #ov{inset:0;width:auto;padding:0;align-items:stretch;justify-content:stretch;background:radial-gradient(ellipse at 28% 42%,#3d2c1d 0%,#1b130d 55%,#0b0704 100%)!important;backdrop-filter:none;-webkit-backdrop-filter:none;pointer-events:none}
 .fp{display:grid;grid-template-columns:1.05fr 1fr;gap:4vw;align-items:center;width:100%;box-sizing:border-box;padding:4vh 5vw;color:var(--parchment)}
 .fp-brand{text-align:center}
-.fp-logo{width:min(36vh,27vw);height:auto;border-radius:22%;box-shadow:0 16px 56px rgba(0,0,0,.6),0 0 0 3px rgba(216,167,68,.35)}
+.fp-logo{width:min(56vh,38vw);height:auto;filter:drop-shadow(0 16px 36px rgba(0,0,0,.6))}
 .fp-brand h1{font-family:var(--display);font-weight:400;font-size:clamp(44px,10vh,120px);line-height:1;margin:2.4vh 0 0;letter-spacing:.02em;color:var(--parchment)}
 .fp-tag{font-size:clamp(15px,3.2vh,34px);color:var(--brass);margin:1.2vh 0 0}
 .fp-sub{font-size:clamp(12px,2.2vh,24px);color:var(--muted);margin:1vh 0 0}
@@ -130,7 +130,7 @@ html.tvlobby #ov{inset:0;width:auto;padding:0;align-items:stretch;justify-conten
 .fp .tl-note{margin:1.4vh 0 0;font-size:clamp(10px,1.8vh,20px)}
 #splash{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6vh;background:radial-gradient(ellipse at 50% 42%,#3d2c1d 0%,#1b130d 55%,#0b0704 100%);color:var(--parchment);text-align:center;transition:opacity .8s ease}
 #splash.hide{opacity:0;pointer-events:none}
-#splash img{width:min(44vh,34vw);border-radius:22%;box-shadow:0 16px 60px rgba(0,0,0,.6),0 0 0 3px rgba(216,167,68,.35)}
+#splash img{width:min(78vh,64vw);height:auto;filter:drop-shadow(0 16px 44px rgba(0,0,0,.6))}
 #splash h1{font-family:var(--display);font-weight:400;font-size:clamp(48px,12vh,140px);line-height:1;margin:1vh 0 0}
 #splash p{margin:0;font-size:clamp(16px,3.4vh,36px);color:var(--brass)}
 #splash h1{color:var(--parchment)!important;text-shadow:0 3px 18px rgba(0,0,0,.6)}

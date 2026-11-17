@@ -197,7 +197,7 @@
     const st=TV.status;
     const stat=st==='ready'?'':`<p class="tl-warn">${st==='starting'||st==='reconnecting'?'Connecting to the link service…':st.startsWith('error')?'Can’t reach the link service. Check that the TV is online.':'…'}</p>`;
     const inGame=G&&!G.preview;
-    return `<div class="fp"><div class="fp-brand"><img class="fp-logo" src="icons/icon-512.png" alt=""><h1>Tidehaven</h1><p class="fp-tag">Settle the island, trade, and build.</p><p class="fp-sub">2 to 6 players, played on your phones</p></div>
+    return `<div class="fp"><div class="fp-brand"><img class="fp-logo" src="icons/logo.png" alt="Tidehaven"><p class="fp-tag">Settle the island, trade, and build.</p><p class="fp-sub">2 to 6 players, played on your phones</p></div>
       <div class="fp-join"><p class="fp-scan">${inGame?'Game paused. Scan to rejoin.':'Scan with your phone’s camera to join'}</p>
       <div class="tl-qr">${qrSVG(TV.url(),300)}</div>
       <p class="tl-code">${esc(TV.plainUrl())}<br>code <b>${TV.code}</b></p>${stat}

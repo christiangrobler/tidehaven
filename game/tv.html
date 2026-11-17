@@ -170,6 +170,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-
 .btns .btn{flex:1;min-width:120px}
 .brand h1{font-family:var(--display);font-weight:400;font-size:46px;margin:0;line-height:1;letter-spacing:.01em}
 .brand .tag{font-size:15px;color:#5c4630;margin:6px 0 4px}
+.brand-logo{display:block;width:min(280px,78%);height:auto;margin:0 auto}
 .seat{display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:end;margin-top:12px}
 .seat label{grid-column:1/-1;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#7a5b2c;font-weight:700}
 .seat input{width:100%;font:600 17px var(--body);color:var(--ink);background:rgba(255,255,255,.55);border:1px solid rgba(60,40,20,.3);border-radius:10px;padding:9px 11px}
@@ -310,10 +311,10 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/icon-192.png">
-<link rel="stylesheet" href="css/padtv.css?v=34">
+<link rel="stylesheet" href="css/padtv.css?v=35">
 </head>
 <body>
-<div id="splash"><img src="icons/icon-512.png" alt=""><h1>Tidehaven</h1><p>Settle the island, trade, and build.</p></div>
+<div id="splash"><img src="icons/logo.png" alt="Tidehaven"><p>Settle the island, trade, and build.</p></div>
 <script>setTimeout(function(){var e=document.getElementById("splash");if(e){e.classList.add("hide");setTimeout(function(){e.remove();},1000);}},3400);</script>
 <div id="app">
   <header id="scores" aria-label="Scores"></header>
@@ -361,7 +362,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-
 <script src="vendor/peerjs.min.js"></script>
 <script src="js/link.js"></script>
 <script src="js/minimap.js"></script>
-<script src="js/tv.js?v=35"></script>
+<script src="js/tv.js?v=36"></script>
 <script>if("serviceWorker" in navigator&&location.protocol!=="file:")navigator.serviceWorker.register("sw.js").catch(function(){});</script>
 </body>
 </html>

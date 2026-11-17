@@ -289,7 +289,7 @@ function sheetHTML(s){
     const minN=PAD.role==='pad'?Math.max(1,...(PAD.seats||[]).map((on,i)=>on?i+1:0)):1;
     const pe=setupPeople();
     const seat=i=>`<div class="seat"><label for="n${i}">Player ${i+1}</label><input id="n${i}" value="${esc(st.names[i])}" maxlength="14" autocomplete="off"><div class="sw" role="radiogroup" aria-label="Color for player ${i+1}">${COLORS.map((c,k)=>`<button class="${st.colors[i]===k?'sel':''}" style="--c:${c.h}" data-act="color" data-s="${i}" data-c="${k}" aria-label="${c.n}"></button>`).join('')}</div></div>`;
-    return `<div class="sheet"><div class="brand"><h1>Tidehaven</h1><p class="tag">Settle the island, trade, and build.</p></div>
+    return `<div class="sheet"><div class="brand"><h1><img class="brand-logo" src="icons/logo.png" alt="Tidehaven"></h1><p class="tag">Settle the island, trade, and build.</p></div>
       <h3>People</h3><div class="seg">${[1,2,3,4,5,6].map(k=>`<button class="${pe===k?'sel':''}" data-act="nplayers" data-v="${k}" ${k<minN||k+cpu>6?'disabled':''}>${k}</button>`).join('')}</div>
       ${n>=5?'<p class="lead scen-sub">5\u20136 players use the large island with 24 cards of each resource and a bigger development deck.</p>':''}
       <h3>Computer opponents</h3><div class="seg">${[0,1,2,3].map(k=>`<button class="${cpu===k?'sel':''}" data-act="cpu" data-v="${k}" ${pe+k>6?'disabled':''}>${k?k:'None'}</button>`).join('')}</div>
