@@ -135,8 +135,8 @@ const SW={id:null,v:[],e:[]};
 function sndWatch(){
   try{
     if(G&&!G.preview&&G.board&&G.winner==null){                  // a church bell when the turn passes to the next player
-      const tk=G.board.id+'|'+G.cur,isPad=typeof PAD!=='undefined'&&PAD.role==='pad';
-      if(SW.tid===G.board.id&&SW.cur!==G.cur){if(!isPad)sfx('church',{s:1});else if(G.cur===PAD.seat)sfx('church',{s:.8});}
+      const isPad=typeof PAD!=='undefined'&&PAD.role==='pad';
+      if(SW.tid===G.board.id&&SW.cur!==G.cur){if(isPad){if(G.cur===PAD.seat)sfx('church',{s:1});}else if(!(typeof PAD!=='undefined'&&PAD.role==='tv'))sfx('church',{s:1});}   // rings on the next player's phone or computer, never on the TV
       SW.tid=G.board.id;SW.cur=G.cur;
     }else{SW.tid=null;}
     if(!G||G.preview||!G.vOwn||!G.eOwn){SW.id=null;return;}
